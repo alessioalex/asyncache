@@ -1,0 +1,36 @@
+{
+  "name": "asyncache",
+  "version": "0.1.0",
+  "description": "Transparently cache your asynchronous get functions.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "debug": "~1.0.4"
+  },
+  "devDependencies": {
+    "redis": "~0.11.0",
+    "mocha": "~1.20.1",
+    "should": "~4.0.4",
+    "sinon": "~1.10.3"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alessioalex/asyncache"
+  },
+  "keywords": [
+    "async",
+    "cache",
+    "async-cache"
+  ],
+  "author": "Alexandru Vladutu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alessioalex/asyncache/issues"
+  },
+  "homepage": "https://github.com/alessioalex/asyncache"
+}
