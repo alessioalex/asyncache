@@ -39,8 +39,8 @@ For more details read the source code, Luke.
 
 ## Note
 
-Be aware that `cache.set()` and `cache.del()` are not atomic unless you implement that by yourself.
-The module does not care about their implementation.
+Be aware that `cache.remember()` and `cache.forget()` are not atomic unless you implement that by yourself inside `cache.set()` and `cache.del()` (which are used internally be the previous two).
+That means that unless you use some kind of lock you might end up with old data in your cache.
 
 ## Tests
 
