@@ -1,6 +1,6 @@
 # asyncache
 
-Transparently cache your asynchronous get functions.
+Transparently cache your asynchronous get functions. [![Build Status](https://secure.travis-ci.org/alessioalex/asyncache.png)](http://travis-ci.org/
 
 ## Usage
 
