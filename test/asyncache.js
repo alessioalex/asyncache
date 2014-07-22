@@ -62,5 +62,44 @@ describe('asyncache', function() {
         done();
       });
     });
+
+    it("should execute all the pending functions", function(done) {
+      var clock = sinon.useFakeTimers();
+
+      var slowAsyncFn = function(key, cb) {
+        setTimeout(function() {
+          cb(null, 'res-' + key);
+        }, 100);
+      };
+
+      var cache = asyncache();
+      cache.get = sinon.stub();
+      cache.get.callsArgWith(1, null, null);
+      cache.set = sinon.stub();
+      cache.set.callsArgWith(3, null);
+      var cachedAsyncFn = cache.remember(slowAsyncFn);
+
+      var fn1 = sinon.stub();
+      var fn2 = sinon.stub();
+      var fn3 = sinon.stub();
+
+      var key = 'sample-key';
+
+      cachedAsyncFn(key, fn1);
+      cachedAsyncFn(key, fn2);
+      cachedAsyncFn(key, fn3);
+
+      setTimeout(function() {
+        fn1.calledWith(null, 'res-' + key).should.be.true;
+        fn2.calledWith(null, 'res-' + key).should.be.true;
+        fn3.calledWith(null, 'res-' + key).should.be.true;
+
+        clock.restore();
+
+        done();
+      }, 200);
+
+      clock.tick(300);
+    });
   });
 });
